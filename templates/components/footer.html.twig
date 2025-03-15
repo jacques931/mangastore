@@ -1,0 +1,45 @@
+<footer class="footer mt-5 py-4 bg-dark text-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-3">À propos de nous</h5>
+                <p>Votre destination manga préférée ! Découvrez notre sélection de mangas, figurines et goodies de vos séries préférées.</p>
+                <div class="social-links">
+                    <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-3">Catégories populaires</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{{ path('app_products') }}" class="text-light text-decoration-none">Produits</a></li>
+                    <li class="mb-2"><a href="{{ path('app_categories') }}" class="text-light text-decoration-none">Catégories</a></li>
+                    <li class="mb-2"><a href="{{ path('app_products') }}" class="text-light text-decoration-none">Goodies</a></li>
+                    <li class="mb-2"><a href="{{ path('app_products') }}" class="text-light text-decoration-none">Nouveautés</a></li>
+                    <li class="mb-2"><a href="{{ path('app_products') }}" class="text-light text-decoration-none">Promotions</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-3">Informations</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">Conditions générales</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">Politique de confidentialité</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">Livraison</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <hr class="border-light">
+        
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="mb-0">&copy; {{ "now"|date("Y") }} MangaStore - Tous droits réservés</p>
+            </div>
+        </div>
+    </div>
+</footer>

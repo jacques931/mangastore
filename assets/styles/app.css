@@ -1,0 +1,47 @@
+body {
+    background-color: white;
+}
+
+.card-img-home {
+    height: 400px;
+    object-fit: cover;
+    width: 600px;
+}
+
+.card-img-top {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card-img-top-200 {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.product-detail-image {
+    max-height: 400px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+}
+.timeline-item i {
+    font-size: 1.25rem;
+}
+.card-header {
+    background-color: #eaeaea;
+}
+.card-title {
+    color: #495057;
+}
+
+.required::after {
+    content: '*';
+    color: red;
+    margin-left: 2px;
+}

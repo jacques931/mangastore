@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% from 'components/_form_layout.html.twig' import form_container %}
+    
+    {% set form_content %}
+        {{ form_start(form, {'attr': {'class': 'needs-validation user-form'}}) }}
+            <div class="form-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        {{ form_row(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.phone, {'attr': {'class': 'form-control', 'placeholder': 'Téléphone'}}) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section mt-4">
+                <fieldset class="form-group address-section">
+                    <legend><i class="bi bi-geo-alt"></i> Adresse</legend>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ form_label(form.address.address, 'Rue', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.address.address, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Numéro et nom de rue'
+                                }
+                            }) }}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            {{ form_label(form.address.code_postal, 'Code Postal', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.address.code_postal, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Code postal'
+                                }
+                            }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_label(form.address.city, 'Ville', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.address.city, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Ville'
+                                }
+                            }) }}
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            {{ form_label(form.address.country, 'Pays', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.address.country, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Pays'
+                                }
+                            }) }}
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="mt-4 row">
+                <div class="col-6">
+                    <a href="{{ path('app_home') }}" class="btn btn-secondary w-100">
+                        <i class="bi bi-arrow-left"></i> Retour
+                    </a>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-check-lg"></i> Enregistrer
+                    </button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    {% endset %}
+
+    {{ form_container('Modifier mon profil', form_content) }}
+{% endblock %}

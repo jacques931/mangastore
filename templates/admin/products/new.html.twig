@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Produit{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% from 'components/_form_layout.html.twig' import form_container %}
+    
+    {% set form_content %}
+        {{ form_start(form, {'attr': {'class': 'needs-validation product-form'}}) }}
+            <div class="form-section">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Saisissez le nom du produit'}}) }}
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        {{ form_row(form.price_ht, {'attr': {'class': 'form-control', 'placeholder': 'Saisissez le prix HT'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.category, {'attr': {'class': 'form-control', 'placeholder': 'Sélectionnez une catégorie'}}) }}
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        {{ form_row(form.description, {
+                            'attr': {
+                                'class': 'form-control',
+                                'placeholder': 'Saisissez une description détaillée du produit',
+                                'rows': '6',
+                                'style': 'resize: vertical;'
+                            }
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="media-upload-section">
+                            {{ form_row(form.media_file, {
+                                'label': 'Ajouter une image',
+                                'attr': {'class': 'form-control'}
+                            }) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 row">
+                <div class="col-6">
+                    <a href="{{ path('app_admin_products') }}" class="btn btn-secondary w-100">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </a>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-save"></i> Créer
+                    </button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    {% endset %}
+
+    {{ form_container('Nouveau produit', form_content) }}
+{% endblock %}

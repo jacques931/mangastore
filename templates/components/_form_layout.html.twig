@@ -1,0 +1,8 @@
+{% macro form_container(title, content) %}
+    <div class="form-container">
+        <div class="form-card">
+            <h1 class="form-title">{{ title }}</h1>
+            {{ content|raw }}
+        </div>
+    </div>
+{% endmacro %}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="hero-section py-5 bg-light rounded">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold">Bienvenue sur MangaStore</h1>
+                    <p class="lead">Découvrez notre vaste collection de mangas, figurines et goodies de vos anime préférées.</p>
+                    <a href="{{ path('app_products') }}" class="btn btn-primary btn-lg">Explorer notre catalogue</a>
+                </div>
+                <div class="col-md-6">
+                        <img src="{{ asset('images/home_image.png') }}" alt="Collection de mangas" class="card-img-home">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="featured-categories mt-5">
+        <h2 class="text-center mb-4">Catégories les Plus Populaires</h2>
+        <div class="row g-4">
+            {% for category in topCategories %}
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <a href="{{ path('app_category_products', {'id': category[0].id}) }}">
+                            {% if category[0].media %}
+                                <img src="{{ asset('uploads/media/' ~ category[0].media.path) }}" class="card-img-top" alt="{{ category[0].name }}">
+                            {% else %}
+                                <img src="https://placehold.co/400x300" class="card-img-top" alt="{{ category[0].name }}">
+                            {% endif %}
+                        </a>
+                        <div class="card-body d-flex flex-column" style="height: 100%;">
+                            <h5 class="card-title">{{ category[0].name }}</h5>
+                            <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">{{ category[0].description }}</p>
+                            <a href="{{ path('app_category_products', {'id': category[0].id}) }}" class="btn btn-outline-primary mt-auto">Explorer</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="featured-products mt-5">
+        <h2 class="text-center mb-4">Produits les Plus Populaires</h2>
+        <div class="row g-4">
+            {% for product in topProducts %}
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <a href="{{ path('app_product_show', {'id': product[0].id}) }}">
+                            {% if product[0].media %}
+                                <img src="{{ asset('uploads/media/' ~ product[0].media.path) }}" class="card-img-top" alt="{{ product[0].name }}">
+                            {% else %}
+                                <img src="https://placehold.co/400x300" class="card-img-top" alt="{{ product[0].name }}">
+                            {% endif %}
+                        </a>
+                        <div class="card-body d-flex flex-column" style="height: 100%;">
+                            <h5 class="card-title">{{ product[0].name }}</h5>
+                            {% if product[0].description %}
+                                <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">{{ product[0].description }}</p>
+                            {% endif %}
+                            <p class="card-text"><strong>Prix: {{ product[0].priceHT|number_format(2, ',', '.')  }}€ HT</strong></p>
+                            <div class="mt-auto d-flex gap-2">
+                                <button type="button" class="btn btn-outline-primary w-100" data-quick-add-to-cart="{{ product[0].id }}">
+                                    <i class="bi bi-cart-plus"></i> Ajouter au panier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

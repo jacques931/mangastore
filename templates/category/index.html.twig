@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Catégories</h1>
+        
+        <div class="row mt-4">
+            {% if categories is not empty %}
+                {% for category in categories %}
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <a href="{{ path('app_category_products', {'id': category.id}) }}">
+                                {% if category.media %}
+                                    <img src="{{ asset('uploads/media/' ~ category.media.path) }}" class="card-img-top" alt="{{ category.name }}">
+                                {% else %}
+                                    <img src="https://placehold.co/400x300" class="card-img-top" alt="{{ category.name }}">
+                                {% endif %}
+                            </a>
+                            <div class="card-body d-flex flex-column" style="height: 100%;">
+                                <h5 class="card-title">{{ category.name }}</h5>
+                                <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">{{ category.description }}</p>
+                                <a href="{{ path('app_category_products', {'id': category.id}) }}" class="btn btn-outline-primary mt-auto">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <p>Aucune catégorie n'a été trouvée.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

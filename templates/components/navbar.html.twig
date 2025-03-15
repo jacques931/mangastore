@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{{ path('app_home') }}">MangaStore</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_products') }}">Produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_categories') }}">Catégories</a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center gap-4">
+                <a href="{{ path('app_order_cart') }}" class="text-dark position-relative" title="Panier">
+                    <i class="bi bi-cart fs-5" id="cart-icon"></i>
+                    <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                        {% set total = 0 %}
+                        {% for quantity in app.session.get('cart') %}
+                            {% set total = total + quantity %}
+                        {% endfor %}
+                        {{ total }}
+                    </span>
+                </a>
+                {% if app.user %}
+                    <div class="dropdown">
+                        <a href="#" class="text-dark" data-bs-toggle="dropdown" aria-expanded="false" title="Mon compte">
+                            <i class="bi bi-person-circle fs-5"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ path('app_profile_edit') }}"><i class="bi bi-person me-2"></i>Mon profil</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_order') }}"><i class="bi bi-box me-2"></i>Mes commandes</a></li>
+                        </ul>
+                    </div>
+                    <a href="{{ path('app_logout') }}" class="text-danger" title="Déconnexion">
+                        <i class="bi bi-box-arrow-right fs-5"></i>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="text-dark" title="Connexion">
+                        <i class="bi bi-person-circle fs-5"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

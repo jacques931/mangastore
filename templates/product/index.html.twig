@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Nos Produits{% if category %} de la catégorie {{ category.name }}{% endif %}</h1>
+        
+        <div class="row">
+            {% if products is not empty %}
+                {% for product in products %}
+                    <div class="col-md-3 mb-3">
+                        <div class="card">
+                            <a href="{{ path('app_product_show', {'id': product.id}) }}">
+                                {% if product.media %}
+                                    <img src="{{ asset('uploads/media/' ~ product.media.path) }}" class="img-fluid card-img-top-200" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="https://placehold.co/400x300" class="img-fluid card-img-top-200" alt="{{ product.name }}">
+                                {% endif %}
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.priceHt|number_format(2, ',', ' ') }} €</p>
+                                <div class="mt-auto d-flex gap-2">
+                                    <button type="button" class="btn btn-outline-primary w-100" data-quick-add-to-cart="{{ product.id }}">
+                                        <i class="bi bi-cart-plus"></i> Ajouter au panier
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <p>Aucun produit n'a été trouvée.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

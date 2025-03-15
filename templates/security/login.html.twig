@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% from 'components/_form_layout.html.twig' import form_container %}
+    
+    {% set form_content %}
+        <form method="post" class="login-form">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="alert alert-info">
+                    Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword" class="form-label">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" name="_remember_me" id="remember_me">
+                <label for="remember_me">Se souvenir de moi</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+
+            <div class="form-footer">
+                <a href="{{ path('app_register') }}">Créer un compte</a>
+            </div>
+        </form>
+    {% endset %}
+
+    {{ form_container('Connexion', form_content) }}
+{% endblock %}

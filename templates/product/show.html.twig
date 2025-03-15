@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row g-5">
+            <div class="col-md-6">
+                <div class="product-image-container position-relative d-flex justify-content-center align-items-center" style="height: 400px;">
+                    {% if product.media %}
+                        <img src="{{ asset('uploads/media/' ~ product.media.path) }}" class="img-fluid rounded shadow" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="https://placehold.co/600x400" class="img-fluid rounded shadow" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="{{ product.name }}">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bold mb-3">{{ product.name }}</h1>
+                <p class="h2 text-primary fw-bold mb-4">{{ product.priceHt|number_format(2, ',', ' ') }} €</p>
+                
+                <div class="mb-4">
+                    <h4 class="fw-bold mb-3">Description</h4>
+                    <p>{{ product.description }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="fw-bold mb-3">Catégorie</h4>
+                    <a href="{{ path('app_category_products', {'id': product.category.id}) }}" class="text-decoration-none badge bg-secondary fs-6">
+                        {{ product.category.name }}
+                    </a>
+                </div>
+
+                <div class="mb-4">
+                    <div class="input-group input-group-lg mb-3">
+                        <button type="button" class="btn btn-outline-primary" onclick="Cart.decreaseQuantity()">
+                            <i class="bi bi-dash"></i>
+                        </button>
+                        <input type="number" id="quantity" name="quantity" class="form-control text-center" value="1" min="1" readonly>
+                        <button type="button" class="btn btn-outline-primary" onclick="Cart.increaseQuantity()">
+                            <i class="bi bi-plus"></i>
+                        </button>
+                    </div>
+                    <button type="button" id="add-to-cart" class="btn btn-primary btn-lg w-100" data-product-id="{{ product.id }}">
+                        <i class="bi bi-cart-plus me-2"></i>Ajouter au panier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
