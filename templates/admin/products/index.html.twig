@@ -21,8 +21,9 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="table-light">
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">ID</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prix</th>
                                 <th scope="col">Catégorie</th>
@@ -31,8 +32,15 @@
                         </thead>
                         <tbody>
                             {% for product in products %}
-                                <tr>
+                                <tr class="text-center align-middle">
                                     <td scope="row">{{ product.id }}</td>
+                                    <td scope="row">
+                                        {% if product.media %}
+                                            <img src="{{ asset('uploads/media/' ~ product.media.path) }}" alt="{{ product.name }}" style="width: 40px; height: 40px; object-fit: cover;">
+                                        {% else %}
+                                            <img src="https://placehold.co/400x300" alt="No image" style="width: 40px; height: 40px; object-fit: cover;">
+                                        {% endif %}
+                                    </td>
                                     <td scope="row">{{ product.name }}</td>
                                     <td scope="row">{{ product.priceHt|number_format(2, ',', '.') }}€</td>
                                     <td scope="row">{{ product.category.name }}</td>

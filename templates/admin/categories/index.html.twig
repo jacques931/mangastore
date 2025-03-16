@@ -21,16 +21,24 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="table-light">
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">ID</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Nom</th>
                                 <th scope="col" class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for category in categories %}
-                                <tr>
+                                <tr class="text-center align-middle">
                                     <td scope="row">{{ category.id }}</td>
+                                    <td scope="row">
+                                        {% if category.media %}
+                                            <img src="{{ asset('uploads/media/' ~ category.media.path) }}" alt="{{ category.name }}" style="width: 80px; height: 40px; object-fit: cover;">
+                                        {% else %}
+                                            <img src="https://placehold.co/400x200" alt="No image" style="width: 80px; height: 40px; object-fit: cover;">
+                                        {% endif %}
+                                    </td>
                                     <td scope="row">{{ category.name }}</td>
                                     <td scope="row" class="text-end">
                                         <a href="{{ path('app_admin_categories_edit', {'id': category.id}) }}" class="btn btn-outline-secondary btn-sm">
