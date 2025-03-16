@@ -22,21 +22,21 @@
                     <table class="table table-hover">
                         <thead class="table-light">
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prix</th>
-                                <th>Catégorie</th>
-                                <th class="text-end">Actions</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Catégorie</th>
+                                <th scope="col" class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for product in products %}
                                 <tr>
-                                    <td>{{ product.id }}</td>
-                                    <td>{{ product.name }}</td>
-                                    <td>{{ product.priceHt|number_format(2, ',', '.') }}€</td>
-                                    <td>{{ product.category.name }}</td>
-                                    <td class="text-end">
+                                    <td scope="row">{{ product.id }}</td>
+                                    <td scope="row">{{ product.name }}</td>
+                                    <td scope="row">{{ product.priceHt|number_format(2, ',', '.') }}€</td>
+                                    <td scope="row">{{ product.category.name }}</td>
+                                    <td scope="row" class="text-end">
                                         <a href="{{ path('app_admin_products_edit', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>

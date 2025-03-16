@@ -8,9 +8,9 @@
             <div class="col-md-6">
                 <div class="product-image-container position-relative d-flex justify-content-center align-items-center" style="height: 400px;">
                     {% if product.media %}
-                        <img src="{{ asset('uploads/media/' ~ product.media.path) }}" class="img-fluid rounded shadow" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="{{ product.name }}">
+                        <img src="{{ asset('uploads/media/' ~ product.media.path) }}" class="product-detail-image rounded shadow" alt="{{ product.name }}">
                     {% else %}
-                        <img src="https://placehold.co/600x400" class="img-fluid rounded shadow" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="{{ product.name }}">
+                        <img src="https://placehold.co/600x400" class="product-detail-image rounded shadow" alt="{{ product.name }}">
                     {% endif %}
                 </div>
             </div>

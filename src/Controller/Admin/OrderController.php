@@ -29,4 +29,20 @@ class OrderController extends AbstractController
             'order' => $order,
         ]);
     }
+
+    #[Route('/{id}/delete', name: 'app_admin_orders_delete', methods: ['POST'])]
+    public function delete(Request $request, Order $order, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$order->getId(), $request->request->get('_token'))) {
+            // Supprime d'abord les order_products associés
+            foreach ($order->getOrderProducts() as $orderProduct) {
+                $entityManager->remove($orderProduct);
+            }
+            // Puis supprime la commande
+            $entityManager->remove($order);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_admin_orders');
+    }
 }

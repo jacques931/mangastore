@@ -43,6 +43,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('media_file')->getData();
+            // Upload image
             if ($imageFile) {
                 $media = $this->mediaService->uploadMedia($imageFile);
                 if ($media) {
@@ -60,8 +61,9 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_categories');
         }
 
-        return $this->render('admin/categories/new.html.twig', [
+        return $this->render('admin/categories/manage.html.twig', [
             'category' => $category,
+            'is_edit' => false,
             'form' => $form->createView(),
         ]);
     }
@@ -74,6 +76,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('media_file')->getData();
+            // Upload image
             if ($imageFile) {
                 $media = $this->mediaService->uploadMedia($imageFile);
                 if ($media) {
@@ -89,8 +92,9 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_categories');
         }
 
-        return $this->render('admin/categories/edit.html.twig', [
+        return $this->render('admin/categories/manage.html.twig', [
             'category' => $category,
+            'is_edit' => true,  
             'form' => $form->createView(),
         ]);
     }

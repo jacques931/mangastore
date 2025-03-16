@@ -30,6 +30,15 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $currentUser = $this->getUser();
+            $roles = $form->get('roles')->getData();
+            
+            // Empêcher la suppression du rôle d'administrateur de son propre compte
+            if ($user === $currentUser && !in_array('ROLE_ADMIN', $roles)) {
+                $this->addFlash('error', 'Vous ne pouvez pas retirer le rôle d\'administrateur de votre propre compte.');
+                return $this->redirectToRoute('app_admin_users_edit', ['id' => $user->getId()]);
+            }
+            
             $entityManager->flush();
             $this->addFlash('success', 'Utilisateur modifié avec succès');
             return $this->redirectToRoute('app_admin_users');

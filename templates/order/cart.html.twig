@@ -13,18 +13,18 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="align-middle">Produit</th>
-                                    <th class="align-middle">Nom</th>
-                                    <th class="align-middle">Prix unitaire</th>
-                                    <th class="align-middle">Quantité</th>
-                                    <th class="align-middle">Total</th>
-                                    <th class="align-middle">Action</th>
+                                    <th scope="col" class="align-middle">Produit</th>
+                                    <th scope="col" class="align-middle">Nom</th>
+                                    <th scope="col" class="align-middle">Prix unitaire</th>
+                                    <th scope="col" class="align-middle">Quantité</th>
+                                    <th scope="col" class="align-middle">Total</th>
+                                    <th scope="col" class="align-middle">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for item in items %}
                                     <tr data-product-id="{{ item.product.id }}" data-price="{{ item.product.priceht }}">
-                                        <td class="align-middle">
+                                        <td scope="row" class="align-middle">
                                             <a href="{{ path('app_product_show', {'id': item.product.id}) }}">
                                                 {% if item.product.media %}
                                                 <img src="{{ asset('uploads/media/' ~ item.product.media.path) }}" 
@@ -39,9 +39,9 @@
                                                 {% endif %}
                                             </a>
                                         </td>
-                                        <td class="align-middle">{{ item.product.name }}</td>
-                                        <td class="align-middle">{{ item.product.priceht|number_format(2, ',', ' ')  }} €</td>
-                                        <td class="align-middle">
+                                        <td scope="row" class="align-middle">{{ item.product.name }}</td>
+                                        <td scope="row" class="align-middle">{{ item.product.priceht|number_format(2, ',', ' ')  }} €</td>
+                                        <td scope="row" class="align-middle">
                                             <div class="input-group" style="width: 120px;">
                                                 <button type="button" class="btn btn-outline-secondary btn-sm quantity-btn" data-quantity="-1">
                                                     <i class="bi bi-dash"></i>
@@ -52,8 +52,8 @@
                                                 </button>
                                             </div>
                                         </td>
-                                        <td class="align-middle product-total">{{ (item.product.priceht * item.quantity)|number_format(2, ',', ' ')  }} €</td>
-                                        <td class="align-middle">
+                                        <td scope="row" class="align-middle product-total">{{ (item.product.priceht * item.quantity)|number_format(2, ',', ' ')  }} €</td>
+                                        <td scope="row" class="align-middle">
                                             <button type="button" class="btn btn-sm remove-item">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -103,10 +103,11 @@
                             </div>
                             <hr>
                             <div class="mb-3">
-                                <h6 class="text-muted mb-2">Adresse de livraison</h6>
+                                <h6 class="text-muted mb-2"><i class="bi bi-house me-2"></i> Adresse de livraison</h6>
                                 {% if app.user.address %}
-                                    <p class="mb-2"><i class="bi bi-house me-2"></i>{{ app.user.address.address }}</p>
-                                    <p class="mb-0">{{ app.user.address.codepostal }} {{ app.user.address.city }} {{ app.user.address.country }}</p>
+                                    <p class="mb-0">{{ app.user.address.address }}</p>
+                                    <p class="mb-0">{{ app.user.address.codepostal }} {{ app.user.address.city }}</p>
+                                    <p class="mb-0">{{ app.user.address.country }}</p>
                                     <a href="{{ path('app_profile_edit') }}" class="btn btn-sm btn-outline-secondary mt-2">
                                         <i class="bi bi-pencil me-1"></i>Modifier
                                     </a>

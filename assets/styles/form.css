@@ -71,18 +71,6 @@
     background-color: #357abd;
 }
 
-.alert {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-}
-
-.alert-danger {
-    background-color: #fee;
-    color: #c00;
-    border: 1px solid #fcc;
-}
-
 .checkbox-wrapper {
     display: flex;
     align-items: center;

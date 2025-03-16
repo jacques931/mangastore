@@ -36,12 +36,21 @@
                             <div class="border rounded p-3">
                                 {% for role in form.roles %}
                                     <div class="form-check mb-2">
-                                        {{ form_widget(role, {'attr': {'class': 'form-check-input'}}) }}
-                                        {{ form_label(role, null, {
-                                            'label_attr': {
-                                                'class': 'form-check-label'
-                                            }
-                                        }) }}
+                                        {% if role.vars.value != 'ROLE_USER' %}
+                                            {{ form_widget(role, {'attr': {'class': 'form-check-input'}}) }}
+                                            {{ form_label(role, null, {
+                                                'label_attr': {
+                                                    'class': 'form-check-label'
+                                                }
+                                            }) }}
+                                        {% else %}
+                                            {{ form_widget(role, {'attr': {'class': 'form-check-input', 'disabled': 'disabled', 'checked': 'checked'}}) }}
+                                            {{ form_label(role, null, {
+                                                'label_attr': {
+                                                    'class': 'form-check-label text-muted'
+                                                }
+                                            }) }}
+                                        {% endif %}
                                     </div>
                                 {% endfor %}
                             </div>

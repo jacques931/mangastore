@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AddressRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
 class Address
@@ -14,15 +15,41 @@ class Address
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'adresse est obligatoire")]
+    #[Assert\Length(
+        min: 5,
+        max: 255,
+        minMessage: "L'adresse doit faire au moins {{ limit }} caractères",
+        maxMessage: "L'adresse ne peut pas faire plus de {{ limit }} caractères"
+    )]
     private ?string $address = null;
 
     #[ORM\Column(length: 5)]
+    #[Assert\NotBlank(message: "Le code postal est obligatoire")]
+    #[Assert\Regex(
+        pattern: '/^[0-9]{5}$/',
+        message: 'Le code postal doit contenir exactement 5 chiffres'
+    )]
     private ?string $code_postal = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "La ville est obligatoire")]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le nom de la ville doit faire au moins {{ limit }} caractères",
+        maxMessage: "Le nom de la ville ne peut pas faire plus de {{ limit }} caractères"
+    )]
     private ?string $city = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le pays est obligatoire")]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le nom du pays doit faire au moins {{ limit }} caractères",
+        maxMessage: "Le nom du pays ne peut pas faire plus de {{ limit }} caractères"
+    )]
     private ?string $country = null;
 
     #[ORM\OneToOne(inversedBy: 'address')]

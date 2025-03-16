@@ -79,6 +79,7 @@ class CartController extends AbstractController
 
         $cart = $session->get('cart', []);
 
+        // Vérifier si le produit existe dans le panier
         if (isset($cart[$productId])) {
             unset($cart[$productId]);
             $session->set('cart', $cart);

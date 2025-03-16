@@ -45,6 +45,7 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('media_file')->getData();
+            // Upload image
             if ($imageFile) {
                 $media = $this->mediaService->uploadMedia($imageFile);
                 if ($media) {
@@ -60,8 +61,10 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_admin_products');
         }
 
-        return $this->render('admin/products/new.html.twig', [
+        return $this->render('admin/products/manage.html.twig', [
             'form' => $form->createView(),
+            'is_edit' => false,
+            'product' => null,
         ]);
     }
 
@@ -73,6 +76,7 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageFile = $form->get('media_file')->getData();
+            // Upload image
             if ($imageFile) {
                 $media = $this->mediaService->uploadMedia($imageFile);
                 if ($media) {
@@ -88,8 +92,9 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_admin_products');
         }
 
-        return $this->render('admin/products/edit.html.twig', [
+        return $this->render('admin/products/manage.html.twig', [
             'form' => $form->createView(),
+            'is_edit' => true,
             'product' => $product,
         ]);
     }

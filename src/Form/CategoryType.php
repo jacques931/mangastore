@@ -30,8 +30,13 @@ class CategoryType extends AbstractType
                 'constraints' => [
                     new File([
                         'maxSize' => '2M',
-                        'mimeTypes' => ['image/jpeg', 'image/png'],
-                        'mimeTypesMessage' => 'Veuillez uploader une image JPEG ou PNG',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                            'image/svg+xml',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez uploader un fichier image valide',
                     ])
                 ],
             ]);

@@ -11,20 +11,14 @@ use App\Repository\OrderProductRepository;
 
 class HomeController extends AbstractController
 {
-    public function __construct(
-        private CategoryRepository $categoryRepository,
-        private ProductRepository $productRepository,
-        private OrderProductRepository $orderProductRepository
-    ) {}
-
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository, OrderProductRepository $orderProductRepository): Response
     {
         // Récupérer les 3 catégories les plus vendues
-        $topCategories = $this->categoryRepository->findTopSellingCategories(3);
+        $topCategories = $categoryRepository->findTopSellingCategories(3);
         
         // Récupérer les 3 produits les plus vendus
-        $topProducts = $this->productRepository->findTopSellingProducts(3);
+        $topProducts = $productRepository->findTopSellingProducts(3);
 
         return $this->render('home/index.html.twig', [
             'topCategories' => $topCategories,

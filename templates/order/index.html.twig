@@ -20,27 +20,27 @@
                     <table class="table table-hover">
                         <thead class="table-light">
                             <tr>
-                                <th>Numéro de commande</th>
-                                <th>Date</th>
-                                <th>Statut</th>
-                                <th>Total</th>
-                                <th class="text-end">Actions</th>
+                                <th scope="col">Numéro de commande</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Statut</th>
+                                <th scope="col">Total</th>
+                                <th scope="col" class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for order in orders %}
                                 <tr>
-                                    <td>{{ order.orderNumber }}</td>
-                                    <td>{{ order.datetime|date('d/m/Y H:i') }}</td>
-                                    <td>
+                                    <td scope="row">{{ order.orderNumber }}</td>
+                                    <td scope="row">{{ order.datetime|date('d/m/Y H:i') }}</td>
+                                    <td scope="row">
                                         {% if order.valid %}
                                             <span class="badge bg-success">Validée</span>
                                         {% else %}
                                             <span class="badge bg-warning">En attente</span>
                                         {% endif %}
                                     </td>
-                                    <td>{{ order.total|number_format(2, ',', ' ') }}€</td>
-                                    <td class="text-end">
+                                    <td scope="row">{{ order.total|number_format(2, ',', ' ') }}€</td>
+                                    <td scope="row" class="text-end">
                                         <a href="{{ path('app_order_show', {'order_number': order.orderNumber}) }}" class="btn btn-outline-primary btn-sm">
                                             <i class="bi bi-eye"></i> Voir détails
                                         </a>

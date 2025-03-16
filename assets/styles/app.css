@@ -9,13 +9,21 @@ body {
 }
 
 .card-img-top {
-    height: 300px;
-    object-fit: cover;
+    max-height: 300px;
+    object-fit: contain;
     width: 100%;
+    padding: 16px;
 }
 
 .card-img-top-200 {
-    height: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    width: 100%;
+    padding: 10px;
+}
+
+.category-image {
+    height: 300px;
     object-fit: cover;
     width: 100%;
 }
@@ -24,6 +32,7 @@ body {
     max-height: 400px;
     object-fit: contain;
     width: 100%;
+    padding: 16px;
 }
 
 .timeline-item {

@@ -60,7 +60,6 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        // Créer la commande
         $order = new Order();
         $order->setCustomer($user);
         $order->setDateTime(new \DateTime());
@@ -70,7 +69,6 @@ class OrderController extends AbstractController
         $orderNumber = time() . '-' . $user->getId();
         $order->setOrderNumber($orderNumber);
 
-        // Initialiser le total
         $shippingCost = 4.99;
         $total = $shippingCost;
 
@@ -87,7 +85,6 @@ class OrderController extends AbstractController
             }
         }
         $order->setTotal($total);
-        // Sauvegarder la commande
         $entityManager->persist($order);
         $entityManager->flush();
 
@@ -122,7 +119,6 @@ class OrderController extends AbstractController
     #[Route('/{order_number}', name: 'app_order_show')]
     public function showOrder(string $order_number, OrderRepository $orderRepository): Response
     {
-        // Récupérer la commande
         $order = $orderRepository->findOneBy(['order_number' => $order_number]);
         
         if (!$order) {
