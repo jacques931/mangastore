@@ -52,6 +52,7 @@ Application e-commerce pour la vente de mangas, figurines et autres produits dé
   - Articles commandés
   - Montants
   - Statut
+- Suppression de commande
 
 #### Gestion des Utilisateurs
 - Liste des utilisateurs
