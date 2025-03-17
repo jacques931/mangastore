@@ -4,6 +4,9 @@ Application e-commerce pour la vente de mangas, figurines et autres produits dé
 
 > **Note :** Ce projet a été réalisé dans le cadre d'un projet scolaire pour démontrer mes compétences techniques et pratiques en développement web.
 
+Accessible via https://jacques.alwaysdata.net/
+> **Note :** Ce site est susceptible d'être supprimé ou remplacé par un autre projet.
+
 ## Fonctionnalités 🚀
 
 ### Espace Client 👤
